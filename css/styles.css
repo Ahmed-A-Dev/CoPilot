@@ -1,0 +1,449 @@
+/* CSS Variables for Theming */
+:root {
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    --font-size: 14px;
+    --line-height: 1.4;
+    --border-radius: 0;
+    --cursor-blink-speed: 1s;
+}
+
+/* Theme Definitions */
+[data-theme="dark"] {
+    --background: #000000;
+    --foreground: #c8c8c8;
+    --accent: #00ff00;
+    --secondary: #00cc00;
+    --error: #ff0000;
+    --prompt: #00aaff;
+    --cursor: #00ff00;
+}
+
+[data-theme="light"] {
+    --background: #ffffff;
+    --foreground: #333333;
+    --accent: #0066cc;
+    --secondary: #0088cc;
+    --error: #cc0000;
+    --prompt: #0066cc;
+    --cursor: #333333;
+}
+
+[data-theme="dracula"] {
+    --background: #282a36;
+    --foreground: #f8f8f2;
+    --accent: #bd93f9;
+    --secondary: #ff79c6;
+    --error: #ff5555;
+    --prompt: #8be9fd;
+    --cursor: #50fa7b;
+}
+
+[data-theme="onedark"] {
+    --background: #1e1e1e;
+    --foreground: #abb2bf;
+    --accent: #61afef;
+    --secondary: #56b6c2;
+    --error: #e06c75;
+    --prompt: #98c379;
+    --cursor: #61afef;
+}
+
+[data-theme="tokyo"] {
+    --background: #1a1b26;
+    --foreground: #c0caf5;
+    --accent: #7aa2f7;
+    --secondary: #bb9af7;
+    --error: #f7768e;
+    --prompt: #9ece6a;
+    --cursor: #7aa2f7;
+}
+
+[data-theme="monokai"] {
+    --background: #272822;
+    --foreground: #f8f8f2;
+    --accent: #a6e22e;
+    --secondary: #66d9ef;
+    --error: #f92672;
+    --prompt: #e6db74;
+    --cursor: #fd971f;
+}
+
+[data-theme="nord"] {
+    --background: #2e3440;
+    --foreground: #d8dee9;
+    --accent: #81a1c1;
+    --secondary: #88c0d0;
+    --error: #bf616a;
+    --prompt: #a3be8c;
+    --cursor: #81a1c1;
+}
+
+[data-theme="cyberpunk"] {
+    --background: #0d0d0d;
+    --foreground: #00ffff;
+    --accent: #ff00ff;
+    --secondary: #ffff00;
+    --error: #ff0040;
+    --prompt: #00ff80;
+    --cursor: #ff00ff;
+}
+
+[data-theme="hacker"] {
+    --background: #000000;
+    --foreground: #00ff00;
+    --accent: #00cc00;
+    --secondary: #008800;
+    --error: #ff4400;
+    --prompt: #00ff00;
+    --cursor: #00ff00;
+}
+
+[data-theme="retro"] {
+    --background: #2a1810;
+    --foreground: #ffb000;
+    --accent: #ff8000;
+    --secondary: #ffa000;
+    --error: #ff4000;
+    --prompt: #ffb000;
+    --cursor: #ff8000;
+}
+
+[data-theme="ocean"] {
+    --background: #0f111a;
+    --foreground: #4f5b66;
+    --accent: #6699cc;
+    --secondary: #5fb3b3;
+    --error: #ec5f67;
+    --prompt: #99c794;
+    --cursor: #6699cc;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+/* Terminal Styles */
+#terminal {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow: hidden;
+}
+
+#output {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#output::-webkit-scrollbar {
+    width: 8px;
+}
+
+#output::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+#output::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 4px;
+}
+
+#output::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* Input Line Styles */
+#input-line {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: 10px;
+    position: relative;
+}
+
+#prompt {
+    color: var(--prompt);
+    margin-right: 8px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+#command {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--foreground);
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    caret-color: transparent;
+    min-width: 20ch;
+    width: auto;
+    max-width: calc(100vw - 200px);
+    flex-shrink: 0;
+}
+
+/* Cursor Animation */
+#cursor {
+    color: var(--cursor);
+    font-weight: bold;
+    animation: blink var(--cursor-blink-speed) infinite;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Output Content Styles */
+.output-line {
+    margin: 2px 0;
+}
+
+.command-line {
+    color: var(--prompt);
+}
+
+.error {
+    color: var(--error);
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.secondary {
+    color: var(--secondary);
+}
+
+.success {
+    color: var(--accent);
+}
+
+/* ASCII Art Styles */
+.ascii-art {
+    color: var(--accent);
+    font-weight: normal;
+    white-space: pre;
+    text-shadow: 0 0 10px var(--accent);
+    text-align: left;
+}
+
+.ascii-art pre {
+    margin: 0;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    width: fit-content;
+}
+
+/* Game-specific enhancements - Fixed positioning */
+#snake-game-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#tetris-game-container {
+    width: fit-content;
+    /* Left-aligned like other terminal commands - no centering */
+}
+
+#snake-game-container .ascii-art,
+#tetris-game-container .ascii-art {
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--background) 0%, rgba(0,0,0,0.3) 100%);
+    box-shadow: 
+        0 0 20px var(--accent),
+        inset 0 0 20px rgba(0,0,0,0.5);
+    width: fit-content;
+    /* NO margin: 0 auto for tetris - this was causing centering */
+}
+
+/* Only center snake game ASCII art */
+#snake-game-container .ascii-art {
+    margin: 0 auto;
+}
+
+/* Arcade-style text effects */
+.arcade-title {
+    font-weight: bold;
+    text-shadow: 
+        0 0 5px var(--accent),
+        0 0 10px var(--accent),
+        0 0 15px var(--accent);
+    animation: arcade-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes arcade-glow {
+    from {
+        text-shadow: 
+            0 0 5px var(--accent),
+            0 0 10px var(--accent),
+            0 0 15px var(--accent);
+    }
+    to {
+        text-shadow: 
+            0 0 10px var(--accent),
+            0 0 20px var(--accent),
+            0 0 30px var(--accent);
+    }
+}
+
+/* Matrix Animation Styles */
+#matrix-animation {
+    color: var(--accent);
+    background: var(--background);
+    font-weight: bold;
+}
+
+#matrix-animation pre {
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+    display: inline-block;
+    width: 20ch;
+    background: var(--background);
+    border: 1px solid var(--secondary);
+}
+
+/* Progress Bar Animation */
+@keyframes progress-glow {
+    0%, 100% { 
+        box-shadow: 0 0 5px var(--accent); 
+    }
+    50% { 
+        box-shadow: 0 0 15px var(--accent), 0 0 25px var(--accent); 
+    }
+}
+
+.progress-bar {
+    animation: progress-glow 2s infinite;
+}
+
+.progress-fill {
+    height: 1em;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+/* Loading Animation Styles */
+.loading-spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    :root {
+        --font-size: 12px;
+    }
+    
+    #terminal {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --font-size: 11px;
+    }
+    
+    #terminal {
+        padding: 5px;
+    }
+    
+    #prompt {
+        margin-right: 4px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    [data-theme="dark"] {
+        --background: #000000;
+        --foreground: #ffffff;
+        --accent: #00ff00;
+        --secondary: #00cc00;
+        --error: #ff0000;
+        --prompt: #00ffff;
+        --cursor: #ffffff;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    #cursor {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* Responsive clock positioning */
+@media (max-width: 1200px) {
+    .ascii-clock {
+        font-size: 6px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ascii-clock {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        font-size: 4px;
+        padding: 10px;
+        transform: scale(0.6);
+        transform-origin: top right;
+    }
+}
+
+@media (max-width: 480px) {
+    .ascii-clock {
+        transform: scale(0.4);
+        padding: 5px;
+    }
+}

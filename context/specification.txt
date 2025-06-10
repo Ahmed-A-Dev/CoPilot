@@ -1,0 +1,34 @@
+PERSONAL PORTFOLIO WEBSITE - TERMINAL INTERFACE
+==============================================
+
+PROJECT GOAL:
+Build a personal portfolio website styled as a retro terminal interface using only HTML, CSS, and JavaScript (no frameworks or build tools).
+
+CORE CONSTRAINTS:
+- HTML, CSS, JavaScript only (no frameworks/libraries)
+- Full-screen responsive layout
+- Monospaced font throughout
+- Terminal-like behavior and appearance
+- Modular, extensible design
+
+KEY FEATURES:
+1. Terminal UI with command system
+2. Multiple color themes
+3. Command history navigation
+4. Portfolio content display
+5. Interactive games (Snake, Tetris)
+6. ASCII art and animations
+7. Real-time clock
+8. Leaderboard system
+9. Visual effects and enhancements
+
+TARGET AUDIENCE:
+- Potential employers
+- Fellow developers
+- Portfolio visitors
+
+TECHNICAL REQUIREMENTS:
+- Responsive design
+- Accessibility compliance
+- Cross-browser compatibility
+- Performance optimization

@@ -1,0 +1,605 @@
+FIXES AND RESOLUTIONS LOG
+=========================
+
+FIX #001: Input field expanding and cursor positioning
+Date: 2025-01-XX
+Issue Reference: Issue #001
+Developer: GitHub Copilot
+
+Problem Summary:
+Command input field was taking full width with cursor stuck at right edge instead of following text input position.
+
+Solution Applied:
+1. Modified CSS for #command input to use width: auto with min/max constraints
+2. Changed #cursor to absolute positioning
+3. Added dynamic cursor positioning logic in JavaScript
+4. Implemented text width measurement using temporary span element
+5. Added proper input field resizing based on content
+
+Files Modified:
+- css/styles.css - Updated input and cursor styling, removed flex: 1
+- js/terminal.js - Added updateCursor() logic with text measurement, enhanced event listeners
+
+Code Changes:
+- Removed flex: 1 from #command CSS
+- Added position: absolute to #cursor CSS  
+- Implemented text width calculation using temporary DOM element
+- Added cursor positioning based on prompt width + text width
+- Enhanced input field dynamic sizing
+
+Testing:
+- Cursor now follows text input position correctly
+- Input field expands as needed based on content
+- Maintains minimum width for usability
+- Responsive behavior maintained
+
+Side Effects:
+- Improved visual feedback for text input
+- Better alignment with terminal aesthetic
+- Enhanced user experience
+
+Status: RESOLVED
+
+FIX #002: Cursor positioning within prompt text
+Date: 2025-01-XX
+Issue Reference: Issue #002
+Developer: GitHub Copilot
+
+Problem Summary:
+Blinking cursor was appearing within the prompt text "guest@site:~$" instead of after the user input text, causing visual confusion.
+
+Solution Applied:
+1. Fixed cursor position calculation to use input field's actual position
+2. Used getBoundingClientRect() to get accurate element positions
+3. Calculated cursor position relative to input field's left edge
+4. Enhanced CSS positioning for better cursor alignment
+5. Added proper vertical centering for cursor
+
+Files Modified:
+- js/terminal.js - Updated updateCursor() method with proper position calculation
+- css/styles.css - Enhanced cursor positioning and alignment
+
+Code Changes:
+- Replaced prompt width calculation with input field position detection
+- Used inputRect.left - inputLineRect.left for accurate offset calculation
+- Added flex-shrink: 0 to prompt and input elements
+- Enhanced cursor vertical alignment with flexbox
+
+Testing:
+- Cursor now appears correctly after input text
+- Cursor follows typing accurately
+- Proper positioning maintained during command history navigation
+- Responsive behavior preserved
+
+Side Effects:
+- Improved visual accuracy for text input feedback
+- Better alignment with terminal interface expectations
+- Enhanced user experience
+
+Status: RESOLVED
+
+FIX #003: Enhanced ASCII clock design and alignment
+Date: 2025-01-XX
+Issue Reference: Issue #003
+Developer: GitHub Copilot
+
+Problem Summary:
+ASCII clock had poor border alignment and simplistic design compared to other ASCII art elements.
+
+Solution Applied:
+1. Created sophisticated ASCII art clock with large digital numbers
+2. Implemented proper border alignment using box-drawing characters
+3. Added ASCII art number patterns for each digit (0-9) and colon
+4. Enhanced visual presentation with shadows and glow effects
+5. Added responsive design for different screen sizes
+
+Files Modified:
+- assets/ascii/clock-art.js - New file with ASCII digit patterns and frame design
+- js/terminal.js - Enhanced clock display generation and positioning
+- css/styles.css - Improved clock styling with responsive design
+- index.html - Added clock-art.js script include
+
+Code Changes:
+- Created CLOCK_ART object with digit patterns and frame elements
+- Implemented generateTimeAscii() method for converting time to ASCII art
+- Added centerText() helper for proper text alignment
+- Enhanced visual styling with shadows and borders
+- Added responsive scaling for mobile devices
+
+Testing:
+- Clock now displays large ASCII art digits
+- Proper border alignment and character spacing
+- Responsive design works across screen sizes
+- Visual consistency with other ASCII art elements
+
+Status: RESOLVED
+
+FIX #004: Matrix animation stop functionality
+Date: 2025-01-XX
+Issue Reference: Issue #004
+Developer: GitHub Copilot
+
+Problem Summary:
+Matrix animation displayed "Press any key to stop" but key presses were ignored.
+
+Solution Applied:
+1. Added proper keyboard event listener during matrix animation
+2. Implemented matrixActive state tracking
+3. Created stopMatrix() method for clean animation termination
+4. Added matrixStopHandler for key press detection
+5. Excluded special keys that might interfere with system functions
+
+Files Modified:
+- js/terminal.js - Enhanced matrix animation with stop functionality
+
+Code Changes:
+- Added matrixActive boolean and matrixStopHandler properties
+- Implemented proper event listener management
+- Created stopMatrix() method with cleanup logic
+- Added key filtering to prevent interference with system keys
+- Enhanced animation lifecycle management
+
+Testing:
+- Matrix animation now properly stops on any key press
+- Clean event listener cleanup prevents memory leaks
+- Special keys (Alt, Ctrl, F-keys) are excluded from stop trigger
+- Animation state properly managed
+
+Status: RESOLVED
+
+FIX #005: Enhanced clock padding and 3D styling
+Date: 2025-01-XX
+Issue Reference: Issue #005
+Developer: GitHub Copilot
+
+Problem Summary:
+Clock needed more border padding and 3D styling similar to the TERMINAL PORTFOLIO text in the welcome message.
+
+Solution Applied:
+1. Enhanced ASCII digit patterns with 3D shadow effect (8 rows instead of 7)
+2. Added substantial padding around clock text with innerPadding and frame padding
+3. Implemented multi-layer text shadows for 3D depth effect
+4. Enhanced CSS styling with inset shadows and multiple text shadows
+5. Increased frame width and padding for better visual spacing
+
+Files Modified:
+- assets/ascii/clock-art.js - Enhanced digit patterns with 3D shadow effect
+- js/terminal.js - Added padding lines and increased frame dimensions
+- css/styles.css - Enhanced styling with 3D effects and proper padding
+
+Code Changes:
+- Added shadow row to each digit pattern for 3D effect
+- Implemented innerPadding and frame padding properties
+- Enhanced CSS with multiple text shadows and inset box shadows
+- Increased frame width to accommodate padding
+- Added proper spacing between elements
+
+Testing:
+- Clock now has substantial padding around all text
+- 3D shadow effect consistent with welcome message styling
+- Enhanced visual depth and professional appearance
+- Proper spacing and alignment maintained
+
+Status: RESOLVED
+
+FIX #006: Simplified matrix animation without stop functionality
+Date: 2025-01-XX
+Issue Reference: Issue #006
+Developer: GitHub Copilot
+
+Problem Summary:
+Matrix animation was stopping immediately and had unnecessary stop functionality that user didn't want.
+
+Solution Applied:
+1. Removed all keyboard event listeners for stopping animation
+2. Removed stopMatrix() method and related functionality
+3. Simplified animation to run full duration naturally
+4. Removed confusing "press any key to stop" messaging
+5. Increased animation duration for better visual experience
+
+Files Modified:
+- js/terminal.js - Simplified startMatrix() method
+
+Code Changes:
+- Removed matrixStopHandler and related event listeners
+- Removed stopMatrix() method completely
+- Simplified animation loop to run fixed duration
+- Increased totalFrames to 80 for longer animation
+- Slowed animation speed slightly for better visual effect
+
+Testing:
+- Matrix animation runs full duration without interruption
+- No more confusing stop messaging
+- Smooth, uninterrupted animation experience
+- Proper cleanup when animation completes naturally
+
+Status: RESOLVED
+
+FIX #007: Improved date and info text alignment
+Date: 2025-01-XX
+Issue Reference: Issue #007
+Developer: GitHub Copilot
+
+Problem Summary:
+Date and info text below the ASCII clock were not aligned properly, affecting overall visual symmetry.
+
+Solution Applied:
+1. Analyzed and adjusted CSS styles for date and info text elements
+2. Ensured consistent use of flexbox properties for alignment
+3. Removed unnecessary margins and paddings
+4. Centered text vertically within its container
+5. Tested across different screen sizes for consistency
+
+Files Modified:
+- css/styles.css - Updated styles for date and info text alignment
+- js/terminal.js - Minor adjustments to text positioning logic
+
+Code Changes:
+- Modified flex properties for date and info text containers
+- Adjusted margin and padding values for better alignment
+- Ensured vertical centering of text elements
+- Fine-tuned responsive behavior for various screen sizes
+
+Testing:
+- Date and info text now aligned properly with clock
+- Consistent alignment observed across different screen sizes
+- No overlapping or misalignment issues present
+- Visual symmetry with ASCII art elements improved
+
+Status: RESOLVED
+
+FIX #008: Improved zero character and left-alignment
+Date: 2025-01-XX
+Issue Reference: Issue #008
+Developer: GitHub Copilot
+
+Problem Summary:
+Zero character in ASCII clock looked like letter Q, and both clock and welcome message were centered when left-alignment looked better.
+
+Solution Applied:
+1. Redesigned zero character to look like proper zero instead of Q
+2. Changed text-align from center to left for both clock and welcome message
+3. Removed center alignment from CSS and inline styles
+4. Updated clock display generation to use left alignment
+5. Enhanced visual consistency and readability
+
+Files Modified:
+- assets/ascii/clock-art.js - Improved zero character design
+- js/terminal.js - Added left-alignment styles to clock and welcome displays
+- css/styles.css - Changed default text-align to left for ASCII art
+
+Code Changes:
+- Redesigned '0' digit pattern with cleaner zero appearance
+- Added style="text-align: left;" to clock and welcome message displays
+- Updated CSS .ascii-art class to use text-align: left
+- Removed center alignment from date and info text below clock
+
+Testing:
+- Zero character now looks like proper zero, not Q
+- Clock displays left-aligned for better readability
+- Welcome message also left-aligned for consistency
+- Visual improvements maintained across all ASCII art
+
+Status: RESOLVED
+
+FIX #009: Enhanced games with arcade design improvements
+Date: 2025-01-XX
+Issue Reference: Issue #009
+Developer: GitHub Copilot
+
+Problem Summary:
+Games needed design improvements including larger playing areas, name entry for leaderboards, better ASCII characters, and more arcade-style presentation.
+
+Solution Applied:
+1. Tripled game area sizes - Snake: 75x45, Tetris: 30x60
+2. Implemented name entry system for personalized leaderboards
+3. Enhanced ASCII characters and visual elements for better game experience
+4. Added arcade-style borders, titles, and presentation
+5. Improved scoring systems and visual feedback
+
+Files Modified:
+- assets/games/snake-game.js - Tripled dimensions, enhanced ASCII, added name entry
+- assets/games/tetris-game.js - Tripled dimensions, improved visuals, name entry system
+- js/terminal.js - Updated leaderboard displays with player names
+- css/styles.css - Added arcade-style visual enhancements
+
+Code Changes:
+- Increased Snake dimensions from 25x15 to 75x45
+- Increased Tetris dimensions from 10x20 to 30x60
+- Added comprehensive name entry system with input validation
+- Enhanced ASCII characters: ●○ for snake, ▓█ for tetris, 🍎 for food
+- Implemented arcade-style borders with ╔╗╚╝ and title displays
+- Added glowing effects and enhanced visual presentation
+- Updated leaderboard format to include player names
+
+Testing:
+- Games now have much larger, more comfortable playing areas
+- Name entry system works correctly with validation
+- Enhanced ASCII provides better visual experience
+- Arcade-style presentation significantly improved
+- Leaderboards now show personalized player names
+
+Status: RESOLVED
+
+FIX #010: Snake game display and speed improvements
+Date: 2025-01-XX
+Issue Reference: Issue #010
+Developer: GitHub Copilot
+
+Problem Summary:
+Snake game had border width issues, apple emoji alignment problems, and gameplay was too slow.
+
+Solution Applied:
+1. Fixed border width to match game area only (width + 2 for side borders)
+2. Implemented apple emoji width compensation by reducing line content by 1 character when apple present
+3. Increased game speed by 50% (changed interval from 200ms to 130ms)
+4. Removed extra space in title by changing '🐍 SNAKE 🐍' to '🐍 SNAKE🐍'
+
+Files Modified:
+- assets/games/snake-game.js - Fixed display logic and game speed
+
+Code Changes:
+- Changed game interval from 200ms to 130ms for 50% speed increase
+- Fixed title spacing in border display
+- Added apple width compensation logic in updateDisplay()
+- Implemented proper border width calculation
+- Added line content adjustment when apple emoji is present
+
+Testing:
+- Border now properly matches game area width
+- Apple emoji no longer causes border alignment issues
+- Game speed significantly improved for better gameplay
+- Title spacing corrected
+
+Status: RESOLVED
+
+FIX #011: Removed emojis and fixed container width in snake game
+Date: 2025-01-XX
+Issue Reference: Issue #011
+Developer: GitHub Copilot
+
+Problem Summary:
+Snake game used emojis instead of ASCII characters and had container width issues where outer container took full width while inner game area was correctly sized.
+
+Solution Applied:
+1. Removed all emojis from snake game display and text
+2. Replaced apple emoji with ASCII glowing circle character (◎)
+3. Removed snake emojis from title and game over screen
+4. Fixed container width by adding width: fit-content to CSS and pre elements
+5. Simplified scoring display by removing emoji icons
+
+Files Modified:
+- assets/games/snake-game.js - Removed emojis, replaced with ASCII characters
+- js/terminal.js - Updated leaderboard title to remove emojis
+- css/styles.css - Added width: fit-content to fix container sizing
+
+Code Changes:
+- Changed title from "🐍 SNAKE🐍" to "SNAKE"
+- Replaced apple emoji (🍎) with glowing circle (◎)
+- Removed emoji from game start message and scoring display
+- Added width: fit-content to pre elements and game container
+- Simplified all text to pure ASCII characters
+
+Testing:
+- Game now uses only ASCII characters for clean display
+- Apple character (◎) provides good visual distinction
+- Container width now properly fits game content
+- No more alignment issues from emoji character widths
+- Clean, retro ASCII aesthetic maintained
+
+Status: RESOLVED
+
+FIX #012: Fixed snake game food line display and movement speed consistency
+Date: 2025-01-XX
+Issue Reference: Issue #012
+Developer: GitHub Copilot
+
+Problem Summary:
+Snake game had an extra dot in food lines causing border misalignment and inconsistent movement speed between horizontal and vertical directions.
+
+Solution Applied:
+1. Fixed food line width by removing hasApple logic that was causing extra dots
+2. Simplified line content generation to ensure exact width matching
+3. Ensured consistent movement timing regardless of direction
+4. Added progressive speed increase based on score for enhanced gameplay
+
+Files Modified:
+- assets/games/snake-game.js - Fixed display logic and movement consistency
+
+Code Changes:
+- Removed hasApple detection and line trimming logic that caused extra dots
+- Used substring() to ensure exact line width matching
+- Standardized movement timing to use consistent interval regardless of direction
+- Added progressive speed increase every 50 points for challenge scaling
+- Simplified line generation logic for cleaner display
+
+Testing:
+- Food lines now display with correct width matching border
+- Snake moves at consistent speed in all directions
+- Progressive speed increase provides engaging difficulty curve
+- Clean visual display without alignment issues
+
+Status: RESOLVED
+
+FIX #013: Fixed name input to update in place
+Date: 2025-01-XX
+Issue Reference: Issue #013
+Developer: GitHub Copilot
+
+Problem Summary:
+Name input for leaderboard was creating new lines for each character instead of updating in place, causing visual clutter.
+
+Solution Applied:
+1. Created persistent DOM element for name display instead of adding new output lines
+2. Modified updateNameDisplay to update existing element content
+3. Maintained visual consistency with terminal input behavior
+4. Added proper cleanup when name entry is complete
+
+Files Modified:
+- assets/games/snake-game.js - Enhanced getPlayerName() and updateNameDisplay()
+
+Code Changes:
+- Created nameDisplayContainer as persistent DOM element
+- Modified updateNameDisplay to accept and update specific element
+- Used textContent for in-place updates instead of addOutput calls
+- Added proper element cleanup and final display update
+
+Testing:
+- Name input now updates single line in place
+- Visual behavior matches terminal input expectations
+- Clean display without line clutter
+- Proper final confirmation message
+
+Status: RESOLVED
+
+FIX #014: Fixed Tetris game container width
+Date: 2025-01-XX
+Issue Reference: Issue #014
+Developer: GitHub Copilot
+
+Problem Summary:
+Tetris game container was taking full terminal width instead of fitting content like the snake game.
+
+Solution Applied:
+1. Added width: fit-content to tetris game pre element inline styling
+2. Updated CSS to include tetris-game-container in width: fit-content rule
+3. Ensured consistent visual presentation between both games
+
+Files Modified:
+- assets/games/tetris-game.js - Added width: fit-content to pre element
+- css/styles.css - Updated game container CSS rules
+
+Code Changes:
+- Modified tetris updateDisplay() to include width: fit-content in pre styling
+- Updated CSS selector to include both game containers
+- Consistent fit-content behavior across all game displays
+
+Testing:
+- Tetris container now properly fits content width
+- Visual consistency between snake and tetris games
+- Clean, centered game display presentation
+
+Status: RESOLVED
+
+FIX #015: Centered game ASCII art containers for better visual presentation
+Date: 2025-01-XX
+Issue Reference: Issue #015
+Developer: GitHub Copilot
+
+Problem Summary:
+Game ASCII art containers were left-aligned and needed centering for better visual presentation.
+
+Solution Applied:
+1. Added flexbox layout to game containers with center alignment
+2. Added margin: 0 auto to both container and ASCII art elements
+3. Maintained fit-content width while achieving center alignment
+4. Applied styling to both snake and tetris game containers
+
+Files Modified:
+- css/styles.css - Enhanced game container styling with centering
+
+Code Changes:
+- Added display: flex, flex-direction: column, align-items: center to game containers
+- Added margin: 0 auto to both container levels for horizontal centering
+- Maintained existing width: fit-content behavior
+- Consistent centering for both games
+
+Testing:
+- Game containers now display centered in terminal
+- ASCII art appears balanced and professionally presented
+- Maintains proper width sizing while improving visual layout
+- Consistent presentation across both games
+
+Status: RESOLVED
+
+FIX #016: Fixed Tetris container positioning to match other commands
+Date: 2025-01-XX
+Issue Reference: Issue #016
+Developer: GitHub Copilot
+
+Problem Summary:
+Tetris game outer container was centered, making it inconsistent with other terminal commands which are left-aligned.
+
+Solution Applied:
+1. Removed margin: 0 auto from tetris-game-container to prevent centering
+2. Kept tetris container left-aligned like other command outputs
+3. Maintained flexbox layout for centering inner components within the container
+4. Preserved content width and inner component centering
+5. Kept snake game centered as it works well for that game
+
+Files Modified:
+- css/styles.css - Separated snake and tetris container styling
+
+Code Changes:
+- Split combined game container CSS into separate rules
+- Removed margin: 0 auto from #tetris-game-container
+- Maintained align-items: center for inner component centering
+- Preserved snake game centering behavior
+- Tetris now left-aligned like other terminal commands
+
+Testing:
+- Tetris container now left-aligned like other commands
+- Inner tetris components still centered within container
+- Snake game maintains centered presentation
+- Consistent with terminal command output positioning
+
+Status: RESOLVED
+
+FIX #017: Properly fixed Tetris container positioning by removing centering
+Date: 2025-01-XX
+Issue Reference: Issue #017
+Developer: GitHub Copilot
+
+Problem Summary:
+Tetris container was still centered despite CSS changes because margin: 0 auto was being applied, which centers elements.
+
+Solution Applied:
+1. Removed margin: 0 auto from shared tetris/snake ASCII art styling
+2. Applied margin: 0 auto only to snake game ASCII art specifically
+3. Tetris container now truly left-aligned like other terminal commands
+4. No centering properties applied to tetris elements
+
+Files Modified:
+- css/styles.css - Removed centering from tetris, kept only for snake
+
+Code Changes:
+- Removed margin: 0 auto from combined selector
+- Added specific #snake-game-container .ascii-art rule with margin: 0 auto
+- Tetris ASCII art now has no margin centering
+- Tetris container positioned naturally left-aligned
+
+Testing:
+- Tetris container now left-aligned like other terminal commands
+- Snake game remains centered as intended
+- No more unintended centering behavior
+- Consistent with terminal command output positioning
+
+Status: RESOLVED
+
+FIX #018: Removed duplicate CSS rule causing Tetris centering
+Date: 2025-01-XX
+Issue Reference: Issue #017 (continued)
+Developer: GitHub Copilot
+
+Problem Summary:
+There was a duplicate CSS rule at line 277 that was still applying centering to both game containers, overriding the specific tetris positioning fix.
+
+Solution Applied:
+1. Removed the duplicate combined selector that applied centering to both games
+2. Kept only the specific individual rules for each game
+3. Tetris now properly left-aligned without conflicting CSS
+
+Files Modified:
+- css/styles.css - Removed duplicate game container rule
+
+Code Changes:
+- Commented out/removed the duplicate rule: #snake-game-container, #tetris-game-container { margin: 0 auto; }
+- Kept individual rules where snake gets centering and tetris doesn't
+- Eliminated CSS rule conflict
+
+Testing:
+- Tetris container now truly left-aligned like other commands
+- No more conflicting CSS rules
+- Clean, consistent positioning behavior
+
+Status: RESOLVED
