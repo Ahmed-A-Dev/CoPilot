@@ -1,75 +1,34 @@
-TERMINAL PORTFOLIO PROJECT SPECIFICATION
-=======================================
+PERSONAL PORTFOLIO WEBSITE - TERMINAL INTERFACE
+==============================================
 
-PROJECT OVERVIEW:
-Create a personal website that looks like a terminal interface with retro styling and interactive commands.
+PROJECT GOAL:
+Build a personal portfolio website styled as a retro terminal interface using only HTML, CSS, and JavaScript (no frameworks or build tools).
 
-ORIGINAL REQUIREMENTS:
-- Terminal-style interface with command-line interaction
-- Retro aesthetic with green text on black background
-- Commands to display personal information (about, projects, skills, contact)
-- Authentic terminal experience with proper cursor behavior
-- Interactive features and engaging user experience
+CORE CONSTRAINTS:
+- HTML, CSS, JavaScript only (no frameworks/libraries)
+- Full-screen responsive layout
+- Monospaced font throughout
+- Terminal-like behavior and appearance
+- Modular, extensible design
 
-EXPANDED SCOPE THROUGH DEVELOPMENT:
-The project evolved significantly during development to include:
-
-CORE FEATURES:
-1. Terminal Interface
-   - Authentic command-line interface with blinking cursor
-   - Command history navigation (↑/↓ arrows)
-   - Auto-focus input management
-   - Proper scrolling and output management
-
-2. Theming System
-   - 11 comprehensive color themes
-   - Popular editor themes (dracula, onedark, tokyo, monokai, nord)
-   - Specialty themes (cyberpunk, hacker, retro, ocean)
-   - Dynamic theme switching
-
-3. Command System
-   - 25+ interactive commands across multiple categories
-   - Personal information commands (about, projects, skills, contact)
-   - Social media integration (github, linkedin, email)
-   - Creative commands (art, cowsay, joke, fortune)
-   - Utility commands (stats, weather, date/time, clock)
-   - Visual commands (matrix, loading, cursor styles)
-
-4. ASCII Art System
-   - Large welcome screen with animated boot sequence
-   - Real-time ASCII clock with 3D styling
-   - Art gallery with 10 different ASCII art pieces
-   - Matrix-style animation effects
-
-5. Games & Entertainment
-   - Fully playable Snake game (75x45 playing field)
-   - Complete Tetris implementation (30x60 playing field)
-   - Persistent leaderboard system with localStorage
-   - Name entry system for score tracking
-   - Arcade-style presentation with borders and effects
-
-6. Technical Features
-   - Responsive design for all screen sizes
-   - Accessibility features and high contrast support
-   - Modular code architecture with separate asset files
-   - Progressive enhancement and graceful degradation
+KEY FEATURES:
+1. Terminal UI with command system
+2. Multiple color themes
+3. Command history navigation
+4. Portfolio content display
+5. Interactive games (Snake, Tetris)
+6. ASCII art and animations
+7. Real-time clock
+8. Leaderboard system
+9. Visual effects and enhancements
 
 TARGET AUDIENCE:
-- Potential employers and clients
-- Fellow developers and tech enthusiasts
-- Anyone interested in retro computing aesthetics
-- Showcase of technical skills and creativity
+- Potential employers
+- Fellow developers
+- Portfolio visitors
 
-SUCCESS CRITERIA:
-✅ Authentic terminal experience with proper interaction
-✅ Engaging and memorable user interface
-✅ Comprehensive demonstration of technical skills
-✅ Cross-platform compatibility and responsiveness
-✅ Professional presentation with polished details
-✅ Interactive entertainment value (games, animations)
-✅ Persistent user engagement features (leaderboards)
-
-FINAL DELIVERABLE:
-A complete, professional terminal portfolio website that serves as both a functional portfolio and an impressive technical demonstration, featuring multiple interactive systems and a rich user experience.
-
-PROJECT STATUS: COMPLETE - All original goals exceeded with expanded feature set
+TECHNICAL REQUIREMENTS:
+- Responsive design
+- Accessibility compliance
+- Cross-browser compatibility
+- Performance optimization
